@@ -1,0 +1,6 @@
+framework module LWKit {
+  umbrella header "LWKit.h"
+
+  export *
+  module * { export * }
+}
