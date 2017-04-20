@@ -86,6 +86,34 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needsDisplay) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     return self;
 }
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /**<>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles clickIndexBlock:(ClicksAlertBlock)block{
+    self = [super init];
+    if (self) {
+        titleText = title;
+        messageText = message;
+        _lineSpacing = DEFAULT_LINE_SPACING;
+        _paragraphSpacing = DEFAULT_LINE_SPACING;
+        _contentAlignment = NSTextAlignmentCenter;
+        _font = [UIFont systemFontOfSize:13];
+        _alertStyle = AlertStyleDefault;
+        if (delegate){
+            _delegate = delegate;
+        }
+        argsArray = [[NSMutableArray alloc] init];
+        hasCancelBtn = NO;
+        if (cancelButtonTitle) {
+            hasCancelBtn = YES;
+            [argsArray insertObject:cancelButtonTitle atIndex:0];
+        }
+        if (otherButtonTitles) {
+            [argsArray insertObject:otherButtonTitles atIndex:1];
+        }
+        
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needsDisplay) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    self.clickBlock = block;
+    return self;
+}
 
 /**
  *  点击按钮
@@ -97,7 +125,7 @@
         [_delegate alertView:self clickedButtonAtIndex:sender.tag];
     }
     if (_clickBlock) {
-        _clickBlock(self, sender.tag);
+        _clickBlock( sender.tag);
     }
     [self dismiss];
 }
@@ -120,7 +148,7 @@
         [_delegate alertView:self clickedButtonAtIndex:sender.tag];
     }
     if (_clickBlock) {
-        _clickBlock(self, sender.tag);
+        _clickBlock (sender.tag);
     }
     [self dismiss];
 }

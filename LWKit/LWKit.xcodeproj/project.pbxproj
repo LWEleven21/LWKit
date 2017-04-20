@@ -592,6 +592,7 @@
 				C9A3AF4B1EA076F80060988F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9A3AF4C1EA076F80060988F /* Build configuration list for PBXNativeTarget "LWKitTests" */ = {
 			isa = XCConfigurationList;
@@ -600,6 +601,7 @@
 				C9A3AF4E1EA076F80060988F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9A3AF7B1EA07A3B0060988F /* Build configuration list for PBXAggregateTarget "LWKitAggrgate" */ = {
 			isa = XCConfigurationList;
@@ -608,6 +610,7 @@
 				C9A3AF7D1EA07A3B0060988F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

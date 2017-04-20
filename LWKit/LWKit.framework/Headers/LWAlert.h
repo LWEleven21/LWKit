@@ -17,6 +17,8 @@ typedef NS_ENUM(NSInteger, AlertStyle) {
     AlertStylePlainTextInput,
     AlertStyleLoginAndPasswordInput
 };
+
+
 @class LWAlert;
 @protocol LWAlertDelegate;
 @interface LWAlert : UIView
@@ -49,7 +51,9 @@ typedef NS_ENUM(NSInteger, AlertStyle) {
 
 #pragma mark - --block
 typedef void (^CancelAlertBlock)(LWAlert *alertView) ;
-typedef void (^ClicksAlertBlock)(LWAlert *alertView, NSInteger buttonIndex);
+typedef void (^ClicksAlertBlock)(NSInteger buttonIndex);
+typedef void(^LWAlertClickIndexBlock)(NSInteger clickIndex);
+
 @property (nonatomic, copy, readonly) CancelAlertBlock cancelBlock;
 @property (nonatomic, copy, readonly) ClicksAlertBlock clickBlock;
 - (void)setCancelBlock:(CancelAlertBlock)cancelBlock;
@@ -69,12 +73,14 @@ typedef void (^ClicksAlertBlock)(LWAlert *alertView, NSInteger buttonIndex);
  */
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /**<>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...NS_REQUIRES_NIL_TERMINATION;
 
+
+
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /**<>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles clickIndexBlock:(ClicksAlertBlock)block;
 /**
  *  显示alertView
  */
 - (void)show;
 @end
-
 #pragma mark - --delegate
 @protocol LWAlertDelegate <NSObject>
 
